@@ -1,9 +1,10 @@
 import unittest
 import time
+from CheckMapping import CheckMapping
 
-target = __import__("main.py")
-check = target.check_mapping
-check1 = target.check_mapping_better
+checker = CheckMapping()
+check = checker.check_mapping
+check1 = checker.check_mapping_better
 
 class TestCheckMapping(unittest.TestCase):
 
@@ -35,12 +36,24 @@ class TestCheckMapping(unittest.TestCase):
         print(f"Test: {testname} took {elapsed} seconds.")
 
     def test_long_true(self):
-        testname = "Short False"
+        testname = "Long True"
         t0 = time.time()
         s1 = 'aaaabbbccdeffggghhhhiiiijjjkklmnnoopppqqqqrrrrsssttuvwwxxxyyyyzzzz'
         s2 = 'aaaabbbccdeffggghhhhiiiijjjkklmnnoopppqqqqrrrrsssttuvwwxxxyyyyzzzz'
 
-        self.assertFalse(check(s1, s1))
+        self.assertTrue(check(s1, s1))
+
+        elapsed = (time.time() - t0)
+        print(f"Test: {testname} took {elapsed} seconds.")
+
+
+    def test_long_single_true(self):
+        testname = "Medium Single True"
+        t0 = time.time()
+        s1 = 'abcdefghijklmnop'
+        s2 = 'lamswnehrtbxcpor'
+
+        self.assertTrue(check(s1, s1))
 
         elapsed = (time.time() - t0)
         print(f"Test: {testname} took {elapsed} seconds.")
