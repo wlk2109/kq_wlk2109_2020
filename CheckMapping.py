@@ -52,21 +52,19 @@ class CheckMapping(object):
     def check_mapping_no_anagrams(self, s1, s2):
         # Create a character to character mapping for each string.
         # Make sure matches are consistent accross the board.
-        if len(s1) != len(s2):
-            return False
 
         s1_mapping = {}
-        s2_mapping = {}
+        s2_mapped = set()
 
-        for char1,char2 in zip(s1,s2):
+        for char1, char2 in zip(s1,s2):
             if char1 in s1_mapping:
                 if char2 != s1_mapping[char1]:
                     return False
-            if char2 in s2_mapping:
-                if char1 != s2_mapping[char2]:
-                    return False
+            if char2 in s2_mapped:
+                # char2 has already been mapped to a character!
+                return False
             s1_mapping[char1] = char2
-            s2_mapping[char2] = char1
+            s2_mapped.add[char2]
 
         return True
 
