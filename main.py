@@ -4,7 +4,7 @@ from CheckMapping import CheckMapping
 def main():
     checker = CheckMapping()
 
-    check = checker.check_mapping_better
+    check = checker.check_mapping_actual
 
     s1 = sys.argv[1]
     s2 = sys.argv[2]

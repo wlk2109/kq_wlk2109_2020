@@ -71,6 +71,20 @@ class CheckMapping(object):
 
         return True
 
+    def check_mapping_actual(self, s1, s2):
+        # Create a character to character mapping for each string.
+        # Make sure matches are consistent accross the board.
+
+        s1_mapping = {}
+
+        for char1, char2 in zip(s1, s2):
+            if char1 in s1_mapping:
+                if char2 != s1_mapping[char1]:
+                    return False
+            s1_mapping[char1] = char2
+
+        return True
+
     def get_letter_counts(self, s):
         counts = {}
         for letter in s:
