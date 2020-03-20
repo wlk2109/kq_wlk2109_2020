@@ -9,6 +9,10 @@ class CheckMapping(object):
         s2_counts = list(self.get_letter_counts(s2).values())
         # Runtime = 2N Where N is length of each input list.
 
+        print(s1_counts)
+        print(s2_counts)
+        print("Hello")
+
         # Runtime (worst case)  = (N^2 + N)/2 for in call
         # n*k where k is element of list for pop call.
         for count in s1_counts:
@@ -24,14 +28,13 @@ class CheckMapping(object):
 
         return False
 
-
     def check_mapping_better(self, s1, s2):
         # Slightly better
         s1_counts = list(self.get_letter_counts(s1).values())
         s2_counts = list(self.get_letter_counts(s2).values())
         # Runtime (Build Dicts) = 2N Where N is length of each input list.
 
-        if not(len(s1_counts) == len(s2_counts)):
+        if len(s1_counts) != len(s2_counts):
             return False
 
         s1_counts.sort()
