@@ -3,8 +3,7 @@ import time
 from CheckMapping import CheckMapping
 
 checker = CheckMapping()
-check = checker.check_mapping
-check1 = checker.check_mapping_better
+check = checker.check_mapping_better
 
 class TestCheckMapping(unittest.TestCase):
 
@@ -12,7 +11,7 @@ class TestCheckMapping(unittest.TestCase):
         testname= "Single"
         t0 = time.time()
 
-        self.assertTrue()
+        self.assertTrue(check('a', 'b'))
 
         elapsed = (time.time()-t0)
         print(f"Test: {testname} took {elapsed} seconds.")
@@ -39,7 +38,7 @@ class TestCheckMapping(unittest.TestCase):
         testname = "Long True"
         t0 = time.time()
         s1 = 'aaaabbbccdeffggghhhhiiiijjjkklmnnoopppqqqqrrrrsssttuvwwxxxyyyyzzzz'
-        s2 = 'aaaabbbccdeffggghhhhiiiijjjkklmnnoopppqqqqrrrrsssttuvwwxxxyyyyzzzz'
+        s2 = 'mnnoopppqqqqrrrrsssttuvwwxxxyyyyzzzzaaaabbbccdeffggghhhhiiiijjjkkl'
 
         self.assertTrue(check(s1, s1))
 

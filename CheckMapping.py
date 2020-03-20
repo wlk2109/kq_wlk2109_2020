@@ -31,23 +31,44 @@ class CheckMapping(object):
         s2_counts = list(self.get_letter_counts(s2).values())
         # Runtime (Build Dicts) = 2N Where N is length of each input list.
 
+        if not(len(s1_counts) == len(s2_counts)):
+            return False
+
         s1_counts.sort()
         s2_counts.sort()
         # Runtime (sort) = 2*N*Log(N)
 
-        # Runtime Compare and Assign: 2*N
-        for i, count in enumerate(s1_counts):
-            if s2_counts[i] == count:
-                s2_counts[i] = 0
-            else:
-                return False
+        matches = 0
+
+        # Runtime Compare and Assign: N
+        for count1, count2 in zip(s1_counts, s2_counts):
+            if count1 == count2:
+                matches += 1
+            else: return False
 
         # Total runtime in the order of N*Log(N)
-        if sum(s2_counts) == 0:
-            return True
+        return matches == len(s1_counts)
 
-        return False
+    def check_mapping_no_anagrams(self, s1, s2):
+        # Create a character to character mapping for each string.
+        # Make sure matches are consistent accross the board.
+        if len(s1) != len(s2):
+            return False
 
+        s1_mapping = {}
+        s2_mapping = {}
+
+        for char1,char2 in zip(s1,s2):
+            if char1 in s1_mapping:
+                if char2 != s1_mapping[char1]:
+                    return False
+            if char2 in s2_mapping:
+                if char1 != s2_mapping[char2]:
+                    return False
+            s1_mapping[char1] = char2
+            s2_mapping[char2] = char1
+
+        return True
 
     def get_letter_counts(self, s):
         counts = {}
